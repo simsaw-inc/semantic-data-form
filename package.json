@@ -1,0 +1,45 @@
+{
+  "name": "semantic-data-form",
+  "version": "0.1.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Ankit Patial<ankit@simsaw.com>",
+  "scripts": {
+    "start": "SET REACT_APP_ENTRY=src/example/index.tsx && react-scripts start -c ./tsconfig-example.json",
+    "prepublish": "tsc",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "formik": "^2.1.3",
+    "semantic-ui-react": "^0.88.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/yup": "^0.26.30",
+    "formik": "^2.1.3",
+    "react": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "semantic-ui-react": "^0.88.2",
+    "typescript": "^3.7.5",
+    "@types/node": "^12.0.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.1",
+    "semantic-data-form": "^0.1.4",
+    "yup": "^0.28.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
