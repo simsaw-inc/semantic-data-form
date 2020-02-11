@@ -1,9 +1,10 @@
 {
   "name": "semantic-data-form",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/components/DataForm/index.js",
   "types": "dist/components/DataForm/index.d.ts",
   "author": "Ankit Patial<ankit@simsaw.com>",
+  "description": "Configurable data form based on Semantic UI and Formik",
   "keywords": [
     "Data Form",
     "Form",
