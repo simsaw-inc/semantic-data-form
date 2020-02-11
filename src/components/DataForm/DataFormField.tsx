@@ -2,16 +2,14 @@ import { Form } from 'semantic-ui-react';
 import React from 'react';
 import { useField } from 'formik';
 import FileUpload from './FileUpload';
-import { DataFormFieldType, DataFormFieldProps } from './types';
+import { DataFormFieldType, DataFormFieldProps, DropDownFieldProps } from './types';
 
 
-export default function DataFormField(props: DataFormFieldProps) {
-  const [field, meta, helper] = useField(props);
+export default function DataFormField(props: DataFormFieldProps | DropDownFieldProps) {
+  const [field, meta, helper] = useField(props.name);
   const val = field.value;
   const err = meta.touched && meta.error;
   const label = props.label || '\u00A0';
-
-  console.log('*', val);
 
 
   switch (props.type) {
@@ -55,9 +53,12 @@ export default function DataFormField(props: DataFormFieldProps) {
       return (
         <Form.Checkbox
           name={props.name} label={label} placeholder={props.placeholder}
-          onChange={field.onChange}
-          value={val}
-          error={err}
+          onChange={(e, { checked }) => helper.setValue(checked)}
+          checked={val}
+          error={!!err && {
+            content: err,
+            pointing: 'left',
+          }}
         />
       );
 
@@ -65,10 +66,12 @@ export default function DataFormField(props: DataFormFieldProps) {
     case DataFormFieldType.DropDown:
       return (
         <Form.Select
-          name={props.name} label={label} placeholder={props.placeholder}
-          options={[]}
-          onChange={field.onChange}
-          value={val}
+          name={props.name}
+          label={label}
+          placeholder={props.placeholder}
+          onChange={(e, { value }) => helper.setValue(value)}
+          defaultValue={val}
+          options={((props as DropDownFieldProps).options)}
           error={err}
         />
       );
@@ -87,12 +90,13 @@ export default function DataFormField(props: DataFormFieldProps) {
 
     case DataFormFieldType.Custom:
       return (
-        <div style={props.style} className="field">
-          {props.label && <label >{props.label}</label>}
+        <Form.Field error={!!err}>
+          {props.label && <label>{props.label}</label>}
           {
-            typeof props.render === 'function' && props.render(val)
+            typeof props.render === 'function' && props.render(field, meta, helper)
           }
-        </div>
+        </Form.Field>
+
       );
 
     default:

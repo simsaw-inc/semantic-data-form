@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Suspense} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Dimmer, Loader} from 'semantic-ui-react';
+import { Container, Dimmer, Loader } from 'semantic-ui-react';
 
 import routes, {RouteItem} from './routes';
 
@@ -32,15 +32,17 @@ function RouteWithSubRoutes(route: RouteItem) {
 
 const App = () => {
     return (
-        <Router>
+        <Container>
+          <Router>
             <Suspense fallback={loadingRoute}>
-                <Switch>
-                    {
-                        routes.map((route, idx) => <RouteWithSubRoutes key={idx} {...route} />)
-                    }
-                </Switch>
+              <Switch>
+                {
+                  routes.map((route, idx) => <RouteWithSubRoutes key={idx} {...route} />)
+                }
+              </Switch>
             </Suspense>
-        </Router>
+          </Router>
+        </Container>
     )
 };
 

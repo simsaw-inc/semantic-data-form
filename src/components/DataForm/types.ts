@@ -1,7 +1,9 @@
-import { ReactElement } from 'react'
+import React from 'react'
 import { GridColumnProps, GridProps } from 'semantic-ui-react';
 import { FormikHelpers } from 'formik';
 import { SemanticWIDTHS } from 'semantic-ui-react/dist/commonjs/generic';
+import { DropdownItemProps } from 'semantic-ui-react/dist/commonjs/modules/Dropdown/DropdownItem';
+import { FieldHelperProps, FieldInputProps, FieldMetaProps } from "formik/dist/types";
 
 export interface DataFormProps<V> {
   initialValues: V;
@@ -19,7 +21,7 @@ export interface DataFormProps<V> {
 export interface DataFormFieldGroupProps {
   gridProps?: GridColumnProps;
   width?: SemanticWIDTHS;
-  fields: DataFormFieldProps | Array<DataFormFieldProps | ReactElement> | ReactElement
+  fields: DataFormFieldProps | DropDownFieldProps | Array<DataFormFieldProps | DropDownFieldProps | React.ReactElement> | React.ReactElement
 }
 
 
@@ -30,8 +32,12 @@ export interface DataFormFieldProps {
   label?: string;
   style?: object
 
-  render?(value: any): any
+  render?(field: FieldInputProps<any>, meta: FieldMetaProps<any>, helper: FieldHelperProps<any>): any
 
+}
+
+export interface DropDownFieldProps extends DataFormFieldProps {
+  options: Array<DropdownItemProps>
 }
 
 export enum DataFormFieldType {

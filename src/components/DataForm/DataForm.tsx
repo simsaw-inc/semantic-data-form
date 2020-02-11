@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Grid, GridProps, Message } from 'semantic-ui-react'
 import { Form as FormikForm, Formik, FormikHelpers, FormikProps } from 'formik';
-import clsNames from './helpers/clsNames';
+import clsNames from '../../helpers/clsNames';
 import { DataFormProps } from './types';
 import DataFormFieldGroup from './DataFormFieldGroup';
 
@@ -23,8 +23,9 @@ export default function DataForm<V>(props: DataFormProps<V>) {
     try {
       await props.onSubmit(values, formikHelpers);
     } catch (ex) {
-      setSubmitting(false);
       setSubmitErr(ex.message || ex)
+    } finally {
+      setSubmitting(false);
     }
 
   };

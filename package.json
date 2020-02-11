@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "author": "Ankit Patial<ankit@simsaw.com>",
   "scripts": {
-    "start": "SET REACT_APP_ENTRY=src/example/index.tsx && react-scripts start -c ./tsconfig-example.json",
+    "start": "react-scripts start",
     "prepublish": "tsc",
     "build": "tsc"
   },
@@ -23,12 +23,13 @@
     "react": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "semantic-ui-react": "^0.88.2",
+    "semantic-ui-css": "^2.4.1",
     "typescript": "^3.7.5",
     "@types/node": "^12.0.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.1",
-    "semantic-data-form": "^0.1.4",
-    "yup": "^0.28.1"
+    "yup": "^0.28.1",
+    "react-calendar": "^2.19.2"
   },
   "browserslist": {
     "production": [
