@@ -1,13 +1,22 @@
 {
   "name": "semantic-data-form",
-  "version": "0.1.4",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.2.0",
+  "main": "dist/components/DataForm/index.js",
+  "types": "dist/components/DataForm/index.d.ts",
   "author": "Ankit Patial<ankit@simsaw.com>",
+  "keywords": [
+    "Data Form",
+    "Form",
+    "SemanticUI Form",
+    "Formik Form",
+    "Formik Json Form",
+    "JSON form",
+    "Configurable Form"
+  ],
   "scripts": {
     "start": "react-scripts start",
-    "prepublish": "tsc",
-    "build": "tsc"
+    "prepublish": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc"
   },
   "peerDependencies": {
     "react": "^16.12.0",

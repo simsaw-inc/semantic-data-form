@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "target": "es5",
     "module": "esnext",
     "jsx": "react",
@@ -10,7 +11,6 @@
       "dom"
     ],
     "declaration": true,
-    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "allowJs": true,
@@ -19,15 +19,13 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "isolatedModules": true
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "src/example"
+    "dist"
   ],
   "include": [
-    "src"
+    "src/components/DataForm"
   ]
 }
