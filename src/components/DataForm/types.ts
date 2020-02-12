@@ -13,6 +13,10 @@ export interface DataFormProps<V> {
   width?: SemanticWIDTHS;
   fieldGroups: Array<DataFormFieldGroupProps>;
 
+  showCancel?: boolean
+  submitText?: string
+  cancelText?: string
+
   onSubmit(values: V, formikHelpers: FormikHelpers<V>): void | Promise<any>;
 
   onCancel?(): void;

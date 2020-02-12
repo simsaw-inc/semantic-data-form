@@ -31,6 +31,7 @@ export default function Login() {
         }}
 
         width={8}
+
         fieldGroups={[
           {
             fields: { label: 'Email', name: 'email', type: DataFormFieldType.Email }
@@ -39,6 +40,8 @@ export default function Login() {
             fields: { label: 'Password', name: 'password', type: DataFormFieldType.Password }
           }
         ]}
+
+        submitText='Login'
       />
     </>
   )

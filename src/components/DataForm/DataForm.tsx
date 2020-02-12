@@ -16,8 +16,6 @@ export default function DataForm<V>(props: DataFormProps<V>) {
   const hasError = !!submitErr;
   const errMsg = submitErr?.replace('GraphQL error:', '').trim();
 
-  const showCancel = typeof props.onCancel === 'function';
-
   const formSubmit = async (values: V, formikHelpers: FormikHelpers<V>) => {
     setSubmitting(true);
     try {
@@ -30,17 +28,26 @@ export default function DataForm<V>(props: DataFormProps<V>) {
 
   };
 
+  const callCancel = () => {
+    if (!props.showCancel || !props.onCancel || typeof props.onCancel !== 'function') return;
+
+    props.onCancel();
+  };
+
   const width = props.width || 16;
   return (
     <React.Fragment>
       <Formik
-        autoComplete="off"
         initialValues={props.initialValues}
         validationSchema={props.validationSchema}
         onSubmit={formSubmit}
       >
         {(fProps: FormikProps<V>) => (
-          <FormikForm onSubmit={fProps.handleSubmit} className={clsNames('ui form', hasError && 'error')}>
+          <FormikForm
+            onSubmit={fProps.handleSubmit}
+            className={clsNames('ui form', hasError && 'error')}
+            autoComplete="off"
+          >
             <Grid {...Object.assign(defaultGridProps, props.gridProps)} >
 
               {
@@ -54,8 +61,19 @@ export default function DataForm<V>(props: DataFormProps<V>) {
 
               <Grid.Row>
                 <Grid.Column width={width}>
-                  <Button content="Submit" primary type="submit" loading={submitting}/>
-                  {showCancel && <Button content="Cancel" onClick={props.onCancel} disabled={submitting}/>}
+                  <Button
+                    primary
+                    type="submit"
+                    content={(props.submitText || 'Submit')}
+                    loading={submitting}
+                  />
+                  {props.showCancel && (
+                    <Button
+                      content={(props.cancelText || 'Cancel')}
+                      onClick={callCancel}
+                      disabled={submitting}
+                    />
+                  )}
                 </Grid.Column>
               </Grid.Row>
 
