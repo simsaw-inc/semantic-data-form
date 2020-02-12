@@ -1,6 +1,6 @@
 {
   "name": "semantic-data-form",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/components/DataForm/index.js",
   "types": "dist/components/DataForm/index.d.ts",
   "author": "Ankit Patial<ankit@simsaw.com>",
