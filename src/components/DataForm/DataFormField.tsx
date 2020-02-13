@@ -91,12 +91,11 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
     case DataFormFieldType.Custom:
       return (
         <Form.Field error={!!err}>
-          {props.label && <label>{props.label}</label>}
+          <label>{label}</label>
           {
-            typeof props.render === 'function' && props.render(field, meta, helper)
+            typeof props.render === 'function' && props.render(field, meta, helper, props)
           }
         </Form.Field>
-
       );
 
     default:

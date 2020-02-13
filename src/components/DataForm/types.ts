@@ -36,7 +36,12 @@ export interface DataFormFieldProps {
   label?: string;
   style?: object
 
-  render?(field: FieldInputProps<any>, meta: FieldMetaProps<any>, helper: FieldHelperProps<any>): any
+  render?(
+    field: FieldInputProps<any>,
+    meta: FieldMetaProps<any>,
+    helper: FieldHelperProps<any>,
+    props: DataFormFieldProps | DropDownFieldProps
+  ): any
 
 }
 
