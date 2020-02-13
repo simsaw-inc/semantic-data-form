@@ -68,13 +68,10 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
         <Form.Select
           name={props.name}
           label={label}
+          placeholder={props.placeholder}
           onChange={(e, { value }) => helper.setValue(value)}
           defaultValue={val}
-          options={(
-            props.placeholder
-              ? [{ value: 0, text: props.placeholder }, ...(props as DropDownFieldProps).options]
-              : (props as DropDownFieldProps).options
-          )}
+          options={(props as DropDownFieldProps).options}
           error={err}
         />
       );
