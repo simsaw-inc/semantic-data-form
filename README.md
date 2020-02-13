@@ -4,6 +4,7 @@ Easy way to render json based forms suing [SemanticUI](https://react.semantic-ui
 ## Form data structure 
    Wrapped with Formik form and Symantic Grid having following props:
     
+- className: set custom class names to form tag.    
 - validationSchema: will be [yup](https://github.com/jquense/yup) object for simple and clean validations
 - initialValues: Fromik needs default values to all props it needs to bind, even if there is no initial value is there to bind define a empty structure and set it.
 - gridProps: that is Sematic Grid props, you can set them as per need

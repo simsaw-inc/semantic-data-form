@@ -45,7 +45,7 @@ export default function DataForm<V>(props: DataFormProps<V>) {
         {(fProps: FormikProps<V>) => (
           <FormikForm
             onSubmit={fProps.handleSubmit}
-            className={clsNames('ui form', hasError && 'error')}
+            className={clsNames('ui form', hasError && 'error', props.className)}
             autoComplete="off"
           >
             <Grid {...Object.assign(defaultGridProps, props.gridProps)} >

@@ -8,6 +8,7 @@ import { FieldHelperProps, FieldInputProps, FieldMetaProps } from "formik/dist/t
 export interface DataFormProps<V> {
   initialValues: V;
   validationSchema?: any | (() => any);
+  className: string;
 
   gridProps?: GridProps;
   width?: SemanticWIDTHS;
