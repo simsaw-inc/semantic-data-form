@@ -6,13 +6,14 @@ import { DropdownItemProps } from 'semantic-ui-react/dist/commonjs/modules/Dropd
 import { FieldHelperProps, FieldInputProps, FieldMetaProps } from "formik/dist/types";
 
 export interface DataFormProps<V> {
+
   initialValues: V;
   validationSchema?: any | (() => any);
-  className: string;
+  fieldGroups: Array<DataFormFieldGroupProps>;
 
+  className?: string;
   gridProps?: GridProps;
   width?: SemanticWIDTHS;
-  fieldGroups: Array<DataFormFieldGroupProps>;
 
   showCancel?: boolean
   submitText?: string
@@ -35,7 +36,9 @@ export interface DataFormFieldProps {
   name: string;
   placeholder?: string;
   label?: string;
-  style?: object
+  style?: object;
+  disabled?: boolean;
+  loading?: boolean;
 
   render?(
     field: FieldInputProps<any>,

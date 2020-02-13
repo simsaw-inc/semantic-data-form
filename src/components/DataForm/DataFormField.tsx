@@ -25,6 +25,8 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           onChange={field.onChange}
           value={val}
           error={err}
+          disabled={props.disabled}
+          loading={props.loading}
         />
       );
 
@@ -35,6 +37,7 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           onChange={field.onChange}
           value={val}
           error={err}
+          disabled={props.disabled}
         />
       );
 
@@ -45,6 +48,7 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           onChange={field.onChange}
           value={val}
           error={err}
+          disabled={props.disabled}
         />
       );
 
@@ -59,6 +63,7 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
             content: err,
             pointing: 'left',
           }}
+          disabled={props.disabled}
         />
       );
 
@@ -73,6 +78,8 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           defaultValue={val}
           options={(props as DropDownFieldProps).options}
           error={err}
+          disabled={props.disabled}
+          loading={props.loading}
         />
       );
 
