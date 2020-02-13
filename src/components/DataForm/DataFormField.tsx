@@ -64,6 +64,11 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
 
 
     case DataFormFieldType.DropDown:
+      let options = (props as DropDownFieldProps).options;
+      if (props.placeholder) {
+        options = [{ value: 0, text: props.placeholder }, ...options];
+      }
+
       return (
         <Form.Select
           name={props.name}
@@ -71,7 +76,7 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           placeholder={props.placeholder}
           onChange={(e, { value }) => helper.setValue(value)}
           defaultValue={val}
-          options={((props as DropDownFieldProps).options)}
+          options={options}
           error={err}
         />
       );
