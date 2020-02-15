@@ -13,6 +13,8 @@ export default function DataForm<V>(props: DataFormProps<V>) {
   const errMsg = submitErr?.replace('GraphQL error:', '').trim();
 
   const formSubmit = async (values: V, formikHelpers: FormikHelpers<V>) => {
+    if (submitting) return;
+
     setSubmitting(true);
     try {
       await props.onSubmit(values, formikHelpers);
@@ -21,7 +23,6 @@ export default function DataForm<V>(props: DataFormProps<V>) {
     } finally {
       setSubmitting(false);
     }
-
   };
 
   const callCancel = () => {
