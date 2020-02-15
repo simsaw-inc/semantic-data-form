@@ -1,10 +1,8 @@
 import React from 'react';
 import * as yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
-import { FieldHelperProps, FieldInputProps, FieldMetaProps } from 'formik';
 import Calendar from 'react-calendar';
-import DataForm from '../components/DataForm';
-import { DataFormFieldProps, DataFormFieldType } from '../components/DataForm/DataFormField';
+import DataForm, { DataFormFieldRenderProps, DataFormFieldType } from '../components/DataForm';
 import { Path } from '../routes'
 import { sleepFor } from '../helpers/sleep'
 import { Form, Popup } from "semantic-ui-react";
@@ -104,24 +102,23 @@ export default function Quote() {
   )
 };
 
-function DatePicker(field: FieldInputProps<any>, meta: FieldMetaProps<any>, helper: FieldHelperProps<any>,
-                    props: DataFormFieldProps): any {
+function DatePicker(props: DataFormFieldRenderProps): any {
   // date format for en-GB = dd/mm/yyyy
-  const splits = field?.value.split('/');
-  const dt = (field.value && new Date(splits[2], Number(splits[1]) - 1, splits[0])) || null;
-  const hasErr = meta.touched && !!meta.error;
-  const err = hasErr && (props.hideErrorLabel ? true : meta.error);
+  const splits = props?.value.split('/');
+  const dt = (props.value && new Date(splits[2], Number(splits[1]) - 1, splits[0])) || null;
+  const hasErr = props.hasError;
+  const err = hasErr && (props.props.hideErrorLabel ? true : props.error);
   return (
     <Popup
       on='focus'
-      trigger={<Form.Input value={field.value} error={err}/>}
+      trigger={<Form.Input value={props.value} error={err}/>}
       content={(
         <Calendar
           minDate={new Date()}
           value={dt}
           onChange={(dt) => {
             const dtStr = (dt as Date).toLocaleDateString('en-GB');
-            helper.setValue(dtStr);
+            props.setValue(dtStr);
           }}
         />
       )}

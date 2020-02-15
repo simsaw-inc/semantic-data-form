@@ -2,20 +2,17 @@
 Easy way to render json based forms suing [SemanticUI](https://react.semantic-ui.com) and [Formik](https://jaredpalmer.com/formik/)
 
 ## Form data structure 
-   Wrapped with Formik form and Symantic Grid having following props:
+   Wrapped with Formik form and Symantic Form Fields having following props:
     
 - className: set custom class names to form tag.    
 - validationSchema: will be [yup](https://github.com/jquense/yup) object for simple and clean validations
 - initialValues: Fromik needs default values to all props it needs to bind, even if there is no initial value is there to bind define a empty structure and set it.
-- gridProps: that is Sematic Grid props, you can set them as per need
 - onSubmit: fn that will be called on Submit button click
 - onCancel: fn that wtill be called on Cancel button click
 - showCancel: to show Cancel Button, make sure you set onCancel with it. Default is false
 - submitText: set custom Submit button text. Default is "Submit"
 - cancelText: set custom Cancel button text. Default is "Cancel"
 - fieldGroups: of array of Grid.Column wrapped in single Symantic Grird.Row having Fields inside Symantic Form.Group
-    - gridProps: Symantic GridColumnProps will will be set to Column that is wrapping fields
-    - width: Symantic Grid.Column width, this can help in defining size for form
     - fields: it can be single DataFormField or Array<DataFormField>, DataFormField looks like as
         - type: type of field that we want to render, e.g. text, email, dropdown etc.
         - name: name of field, will be used by Formik to bind data with. 

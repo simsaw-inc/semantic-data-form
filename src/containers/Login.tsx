@@ -1,10 +1,9 @@
 import React from 'react';
 import * as yup from 'yup';
 
-import DataForm from '../components/DataForm';
+import DataForm, { DataFormFieldType } from '../components/DataForm';
 import { sleepFor } from '../helpers/sleep';
 import { Link } from 'react-router-dom';
-import { DataFormFieldType } from '../components/DataForm/DataFormField';
 
 
 const schema = yup.object().shape({
@@ -28,10 +27,10 @@ export default function Login() {
           password: '',
         }}
         onSubmit={async (values: any) => {
-          await sleepFor(3); // simulate save operation
-        }}
+          await sleepFor(1); // simulate save operation
+          throw new Error("Some error message");
 
-        width={8}
+        }}
 
         fieldGroups={[
           {

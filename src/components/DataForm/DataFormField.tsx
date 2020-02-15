@@ -100,7 +100,13 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
         <Form.Field error={!!err}>
           <label>{label}</label>
           {
-            typeof props.render === 'function' && props.render(field, meta, helper, props)
+            typeof props.render === 'function' && props.render({
+              hasError: meta.touched && !!meta.error,
+              error: meta.error,
+              value: field.value,
+              props: props,
+              setValue: helper.setValue
+            })
           }
         </Form.Field>
       );

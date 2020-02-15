@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Grid, GridProps, Message } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 import { Form as FormikForm, Formik, FormikHelpers, FormikProps } from 'formik';
 import clsNames from '../../helpers/clsNames';
 import { DataFormProps } from './index';
 import DataFormFieldGroup from './DataFormFieldGroup';
 
-
-const defaultGridProps: GridProps = {
-  columns: 'equal', stackable: true, padded: false
-};
 
 export default function DataForm<V>(props: DataFormProps<V>) {
   const [submitting, setSubmitting] = useState(false);
@@ -34,7 +30,6 @@ export default function DataForm<V>(props: DataFormProps<V>) {
     props.onCancel();
   };
 
-  const width = props.width || 16;
   return (
     <React.Fragment>
       <Formik
@@ -48,41 +43,30 @@ export default function DataForm<V>(props: DataFormProps<V>) {
             className={clsNames('ui form', hasError && 'error', props.className)}
             autoComplete="off"
           >
-            <Grid {...Object.assign(defaultGridProps, props.gridProps)} >
-              <Grid.Row>
-                {
-                  props.fieldGroups.map((o, idx) => (
+            <>
+              {
+                props.fieldGroups.map((o, idx) => (
 
-                    <Grid.Column key={idx} width={width} {...o.gridProps}>
-                      <DataFormFieldGroup  {...o} />
-                    </Grid.Column>
-                  ))
-                }
-              </Grid.Row>
-              <Grid.Row>
-                <Grid.Column width={width}>
-                  <Button
-                    primary
-                    type="submit"
-                    content={(props.submitText || 'Submit')}
-                    loading={submitting}
-                  />
-                  {props.showCancel && (
-                    <Button
-                      content={(props.cancelText || 'Cancel')}
-                      onClick={callCancel}
-                      disabled={submitting}
-                    />
-                  )}
-                </Grid.Column>
-              </Grid.Row>
+                  <DataFormFieldGroup key={idx}  {...o} />
+                ))
+              }
+              <Button
+                primary
+                type="submit"
+                content={(props.submitText || 'Submit')}
+                loading={submitting}
+              />
+              {props.showCancel && (
+                <Button
+                  content={(props.cancelText || 'Cancel')}
+                  onClick={callCancel}
+                  disabled={submitting}
+                />
+              )}
 
-              <Grid.Row>
-                <Grid.Column width={width}>
-                  {hasError && <Message error header='Error' content={errMsg}/>}
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+              {hasError && <Message error header='Error' content={errMsg}/>}
+            </>
+
           </FormikForm>
         )}
 
