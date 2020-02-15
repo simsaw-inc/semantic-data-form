@@ -1,15 +1,7 @@
 import React from 'react';
-import { Form, GridColumnProps } from 'semantic-ui-react';
-
-import DataFormField, { DataFormFieldProps, DropDownFieldProps } from './DataFormField';
-import { SemanticWIDTHS } from "semantic-ui-react/dist/commonjs/generic";
-
-export interface DataFormFieldGroupProps {
-  gridProps?: GridColumnProps;
-  width?: SemanticWIDTHS;
-  fields: (DataFormFieldProps | DropDownFieldProps | React.ReactElement)
-    | Array<DataFormFieldProps | DropDownFieldProps | React.ReactElement>
-}
+import { Form } from 'semantic-ui-react';
+import DataFormField from './DataFormField';
+import { DataFormFieldGroupProps, DataFormFieldProps } from './index';
 
 export default function DataFormFieldGroup(props: DataFormFieldGroupProps) {
   const isArray = Array.isArray(props.fields);

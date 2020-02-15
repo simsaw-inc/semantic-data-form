@@ -1,46 +1,8 @@
-import { Form, GridColumnProps } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import React from 'react';
 import { useField } from 'formik';
 import FileUpload from './FileUpload';
-import { FieldHelperProps, FieldInputProps, FieldMetaProps } from 'formik/dist/types';
-import { DropdownItemProps } from 'semantic-ui-react/dist/commonjs/modules/Dropdown/DropdownItem';
-
-
-export interface DataFormFieldProps {
-  type: DataFormFieldType;
-  name: string;
-  placeholder?: string;
-  label?: string;
-  style?: object;
-  disabled?: boolean;
-  loading?: boolean;
-  hideErrorLabel?: boolean;
-
-  render?(
-    field: FieldInputProps<any>,
-    meta: FieldMetaProps<any>,
-    helper: FieldHelperProps<any>,
-    props: DataFormFieldProps | DropDownFieldProps
-  ): any
-}
-
-export interface DropDownFieldProps extends DataFormFieldProps {
-  options: Array<DropdownItemProps>
-}
-
-export enum DataFormFieldType {
-  Text = 'text',
-  TextArea = 'textArea',
-  Email = 'email',
-  Password = 'password',
-  Radio = 'radio',
-  CheckBox = 'chk',
-  DropDown = 'select',
-  Upload = 'upload',
-  UploadMulti = 'uploadMulti',
-  Custom = 'custom',
-}
-
+import { DataFormFieldProps, DropDownFieldProps, DataFormFieldType } from './index';
 
 export default function DataFormField(props: DataFormFieldProps | DropDownFieldProps) {
   const [field, meta, helper] = useField(props.name);
