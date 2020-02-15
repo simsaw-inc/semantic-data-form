@@ -1,3 +1,2 @@
-export {default} from './DataForm'
+export { default } from './DataForm'
 
-export * from './types'

@@ -3,7 +3,8 @@ import * as yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 import { FieldHelperProps, FieldInputProps, FieldMetaProps } from 'formik';
 import Calendar from 'react-calendar';
-import DataForm, { DataFormFieldType } from '../components/DataForm';
+import DataForm from '../components/DataForm';
+import { DataFormFieldProps, DataFormFieldType } from '../components/DataForm/DataFormField';
 import { Path } from '../routes'
 import { sleepFor } from '../helpers/sleep'
 import { Form, Popup } from "semantic-ui-react";
@@ -50,8 +51,19 @@ export default function Quote() {
         fieldGroups={[
           {
             fields: [
-              { label: 'Pickup PostCode', name: 'pickupCode', type: DataFormFieldType.Text },
-              { label: 'Pickup Date', name: 'pickupOn', type: DataFormFieldType.Custom, render: DatePicker }
+              {
+                label: 'Pickup PostCode',
+                name: 'pickupCode',
+                type: DataFormFieldType.Text,
+                hideErrorLabel: true
+              },
+              {
+                label: 'Pickup Date',
+                name: 'pickupOn',
+                type: DataFormFieldType.Custom,
+                render: DatePicker,
+                hideErrorLabel: true
+              }
             ]
           },
           {
@@ -92,14 +104,17 @@ export default function Quote() {
   )
 };
 
-function DatePicker(field: FieldInputProps<any>, meta: FieldMetaProps<any>, helper: FieldHelperProps<any>): any {
+function DatePicker(field: FieldInputProps<any>, meta: FieldMetaProps<any>, helper: FieldHelperProps<any>,
+                    props: DataFormFieldProps): any {
   // date format for en-GB = dd/mm/yyyy
   const splits = field?.value.split('/');
   const dt = (field.value && new Date(splits[2], Number(splits[1]) - 1, splits[0])) || null;
+  const hasErr = meta.touched && !!meta.error;
+  const err = hasErr && (props.hideErrorLabel ? true : meta.error);
   return (
     <Popup
       on='focus'
-      trigger={<Form.Input value={field.value} error={meta.touched && meta.error} />}
+      trigger={<Form.Input value={field.value} error={err}/>}
       content={(
         <Calendar
           minDate={new Date()}

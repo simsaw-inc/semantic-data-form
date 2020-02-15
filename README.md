@@ -25,6 +25,7 @@ Easy way to render json based forms suing [SemanticUI](https://react.semantic-ui
         - options: in case of dropDown use it to pass on options
         - disabled: to show disabled input
         - loading: to show loading, works for text and drop down only
+        - hideErrorLabel: to stop showing error label 
         - render: in default supported types does not meet the requirement, set type = Custom and define render fn,
            fn will be passed on Formik useField hook data as individual param  
              

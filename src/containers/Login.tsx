@@ -1,9 +1,10 @@
 import React from 'react';
 import * as yup from 'yup';
 
-import DataForm, { DataFormFieldType } from '../components/DataForm';
+import DataForm from '../components/DataForm';
 import { sleepFor } from '../helpers/sleep';
 import { Link } from 'react-router-dom';
+import { DataFormFieldType } from '../components/DataForm/DataFormField';
 
 
 const schema = yup.object().shape({

@@ -2,9 +2,27 @@ import React, { useState } from 'react';
 import { Button, Grid, GridProps, Message } from 'semantic-ui-react'
 import { Form as FormikForm, Formik, FormikHelpers, FormikProps } from 'formik';
 import clsNames from '../../helpers/clsNames';
-import { DataFormProps } from './types';
-import DataFormFieldGroup from './DataFormFieldGroup';
 
+import DataFormFieldGroup, { DataFormFieldGroupProps } from './DataFormFieldGroup';
+import { SemanticWIDTHS } from "semantic-ui-react/dist/commonjs/generic";
+
+export interface DataFormProps<V> {
+  initialValues: V;
+  validationSchema?: any | (() => any);
+  fieldGroups: Array<DataFormFieldGroupProps>;
+
+  className?: string;
+  gridProps?: GridProps;
+  width?: SemanticWIDTHS;
+
+  showCancel?: boolean
+  submitText?: string
+  cancelText?: string
+
+  onSubmit(values: V, formikHelpers: FormikHelpers<V>): void | Promise<any>;
+
+  onCancel?(): void;
+}
 
 const defaultGridProps: GridProps = {
   columns: 'equal', stackable: true, padded: false

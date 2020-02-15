@@ -1,14 +1,52 @@
-import { Form } from 'semantic-ui-react';
+import { Form, GridColumnProps } from 'semantic-ui-react';
 import React from 'react';
 import { useField } from 'formik';
 import FileUpload from './FileUpload';
-import { DataFormFieldType, DataFormFieldProps, DropDownFieldProps } from './types';
+import { FieldHelperProps, FieldInputProps, FieldMetaProps } from 'formik/dist/types';
+import { DropdownItemProps } from 'semantic-ui-react/dist/commonjs/modules/Dropdown/DropdownItem';
+
+
+export interface DataFormFieldProps {
+  type: DataFormFieldType;
+  name: string;
+  placeholder?: string;
+  label?: string;
+  style?: object;
+  disabled?: boolean;
+  loading?: boolean;
+  hideErrorLabel?: boolean;
+
+  render?(
+    field: FieldInputProps<any>,
+    meta: FieldMetaProps<any>,
+    helper: FieldHelperProps<any>,
+    props: DataFormFieldProps | DropDownFieldProps
+  ): any
+}
+
+export interface DropDownFieldProps extends DataFormFieldProps {
+  options: Array<DropdownItemProps>
+}
+
+export enum DataFormFieldType {
+  Text = 'text',
+  TextArea = 'textArea',
+  Email = 'email',
+  Password = 'password',
+  Radio = 'radio',
+  CheckBox = 'chk',
+  DropDown = 'select',
+  Upload = 'upload',
+  UploadMulti = 'uploadMulti',
+  Custom = 'custom',
+}
 
 
 export default function DataFormField(props: DataFormFieldProps | DropDownFieldProps) {
   const [field, meta, helper] = useField(props.name);
   const val = field.value;
-  const err = meta.touched && meta.error;
+  const hasError = meta.touched && !!meta.error;
+  const err = hasError && (props.hideErrorLabel ? true : meta.error);
   const label = props.label || '\u00A0';
 
 
@@ -59,10 +97,10 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           name={props.name} label={label} placeholder={props.placeholder}
           onChange={(e, { checked }) => helper.setValue(checked)}
           checked={val}
-          error={!!err && {
+          error={hasError && (props.hideErrorLabel ? true : {
             content: err,
             pointing: 'left',
-          }}
+          })}
           disabled={props.disabled}
         />
       );
