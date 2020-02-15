@@ -49,16 +49,16 @@ export default function DataForm<V>(props: DataFormProps<V>) {
             autoComplete="off"
           >
             <Grid {...Object.assign(defaultGridProps, props.gridProps)} >
+              <Grid.Row>
+                {
+                  props.fieldGroups.map((o, idx) => (
 
-              {
-                props.fieldGroups.map((o, idx) => (
-                  <Grid.Row key={idx}>
-                    <Grid.Column width={width} {...o.gridProps}>
+                    <Grid.Column key={idx} width={width} {...o.gridProps}>
                       <DataFormFieldGroup  {...o} />
                     </Grid.Column>
-                  </Grid.Row>
-                ))}
-
+                  ))
+                }
+              </Grid.Row>
               <Grid.Row>
                 <Grid.Column width={width}>
                   <Button

@@ -13,7 +13,7 @@ Easy way to render json based forms suing [SemanticUI](https://react.semantic-ui
 - showCancel: to show Cancel Button, make sure you set onCancel with it. Default is false
 - submitText: set custom Submit button text. Default is "Submit"
 - cancelText: set custom Cancel button text. Default is "Cancel"
-- fieldGroups: of array of Symantic Grird.Row with Grid.Column having Fields inside Symantic Form.Group
+- fieldGroups: of array of Grid.Column wrapped in single Symantic Grird.Row having Fields inside Symantic Form.Group
     - gridProps: Symantic GridColumnProps will will be set to Column that is wrapping fields
     - width: Symantic Grid.Column width, this can help in defining size for form
     - fields: it can be single DataFormField or Array<DataFormField>, DataFormField looks like as

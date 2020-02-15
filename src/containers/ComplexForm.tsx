@@ -6,7 +6,7 @@ import Calendar from 'react-calendar';
 import DataForm, { DataFormFieldType } from '../components/DataForm';
 import { Path } from '../routes'
 import { sleepFor } from '../helpers/sleep'
-import { Input, Popup } from "semantic-ui-react";
+import { Form, Popup } from "semantic-ui-react";
 
 
 export default function Quote() {
@@ -99,7 +99,7 @@ function DatePicker(field: FieldInputProps<any>, meta: FieldMetaProps<any>, help
   return (
     <Popup
       on='focus'
-      trigger={<Input value={field.value}/>}
+      trigger={<Form.Input value={field.value} error={meta.touched && meta.error} />}
       content={(
         <Calendar
           minDate={new Date()}
