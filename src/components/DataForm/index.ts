@@ -46,6 +46,9 @@ export interface DataFormFieldProps {
   /** to hide error label */
   hideErrorLabel?: boolean;
 
+  /** Dropdown options */
+  options?: Array<DropdownItemProps>
+
   render?(data: DataFormFieldRenderProps): any
 }
 
@@ -60,14 +63,11 @@ export interface DataFormFieldRenderProps {
   error?: string;
 
   /** All props that was passed on */
-  props: DataFormFieldProps | DropDownFieldProps
+  props: DataFormFieldProps
 
   setValue(value: any): void;
 }
 
-export interface DropDownFieldProps extends DataFormFieldProps {
-  options: Array<DropdownItemProps>
-}
 
 export enum DataFormFieldType {
   Text = 'text',
@@ -84,7 +84,6 @@ export enum DataFormFieldType {
 
 
 export interface DataFormFieldGroupProps {
-  fields: (DataFormFieldProps | DropDownFieldProps | React.ReactElement)
-    | Array<DataFormFieldProps | DropDownFieldProps | React.ReactElement>
+  fields: DataFormFieldProps | React.ReactElement | Array<DataFormFieldProps | React.ReactElement>
 }
 

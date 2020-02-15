@@ -2,9 +2,9 @@ import { Form } from 'semantic-ui-react';
 import React from 'react';
 import { useField } from 'formik';
 import FileUpload from './FileUpload';
-import { DataFormFieldProps, DropDownFieldProps, DataFormFieldType } from './index';
+import { DataFormFieldProps, DataFormFieldType } from './index';
 
-export default function DataFormField(props: DataFormFieldProps | DropDownFieldProps) {
+export default function DataFormField(props: DataFormFieldProps) {
   const [field, meta, helper] = useField(props.name);
   const val = field.value;
   const hasError = meta.touched && !!meta.error;
@@ -76,7 +76,7 @@ export default function DataFormField(props: DataFormFieldProps | DropDownFieldP
           placeholder={props.placeholder}
           onChange={(e, { value }) => helper.setValue(value)}
           defaultValue={val}
-          options={(props as DropDownFieldProps).options}
+          options={props.options || []}
           error={err}
           disabled={props.disabled}
           loading={props.loading}
