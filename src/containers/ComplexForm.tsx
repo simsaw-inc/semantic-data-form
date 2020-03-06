@@ -90,7 +90,7 @@ export default function Quote() {
           },
           {
             fields: {
-              label: 'I agree to you terms and conditions',
+              label: <span>I agree to you <a href={Path.TermsAndConditions} target="_blank">terms and conditions</a></span>,
               name: 'isAgree',
               type: DataFormFieldType.CheckBox
             }

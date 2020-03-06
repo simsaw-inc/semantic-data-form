@@ -6,6 +6,7 @@ export enum Path {
     Home = '/',
     Login = '/login',
     ComplexForm = '/complex-form',
+    TermsAndConditions = '/terms-conditions',
 }
 
 export interface Route {
@@ -33,6 +34,11 @@ const routes: Array<RouteItem> = [
     {
         path: Path.ComplexForm,
         component: React.lazy(() => import('./containers/ComplexForm')),
+        exact: true
+    },
+    {
+        path: Path.TermsAndConditions,
+        component: React.lazy(() => import('./containers/TermsAndConditions')),
         exact: true
     },
     {

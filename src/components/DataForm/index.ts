@@ -1,5 +1,4 @@
-import { GridColumnProps, DropdownItemProps } from 'semantic-ui-react';
-import { SemanticWIDTHS } from 'semantic-ui-react/dist/commonjs/generic';
+import { DropdownItemProps } from 'semantic-ui-react';
 import { FormikHelpers } from 'formik';
 
 export { default } from './DataForm'
@@ -36,7 +35,7 @@ export interface DataFormFieldProps {
   /** placeholder text for inputs */
   placeholder?: string;
   /** label for input */
-  label?: string;
+  label?: string | JSX.Element;
   /** custom style object */
   style?: object;
   /** set field as disabled */

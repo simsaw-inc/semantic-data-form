@@ -3,7 +3,7 @@ import {Form, LabelProps, SemanticShorthandItem} from 'semantic-ui-react';
 
 export interface FileUploadProps {
   name: string;
-  label?: string | undefined;
+  label?: string | JSX.Element | undefined;
   value: any;
   error: boolean | SemanticShorthandItem<LabelProps>;
 
