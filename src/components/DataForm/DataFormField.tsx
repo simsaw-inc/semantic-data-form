@@ -4,7 +4,7 @@ import { useField } from 'formik';
 import FileUpload from './FileUpload';
 import { DataFormFieldProps, DataFormFieldType } from './index';
 
-export default function DataFormField(props: DataFormFieldProps) {
+export default function DataFormField<V>(props: DataFormFieldProps<V>) {
   const [field, meta, helper] = useField(props.name);
   const val = field.value;
   const hasError = meta.touched && !!meta.error;
@@ -106,7 +106,7 @@ export default function DataFormField(props: DataFormFieldProps) {
               value: field.value,
               props: props,
               setValue: helper.setValue
-            })
+            }, props.formProps)
           }
         </Form.Field>
       );

@@ -90,7 +90,8 @@ export default function Quote() {
           },
           {
             fields: {
-              label: <span>I agree to you <a href={Path.TermsAndConditions} target="_blank">terms and conditions</a></span>,
+              label: <span>I agree to you <a href={Path.TermsAndConditions}
+                                             target="_blank">terms and conditions</a></span>,
               name: 'isAgree',
               type: DataFormFieldType.CheckBox
             }
@@ -102,12 +103,13 @@ export default function Quote() {
   )
 };
 
-function DatePicker(props: DataFormFieldRenderProps): any {
+function DatePicker(props: DataFormFieldRenderProps<any>): any {
   // date format for en-GB = dd/mm/yyyy
   const splits = props?.value.split('/');
   const dt = (props.value && new Date(splits[2], Number(splits[1]) - 1, splits[0])) || null;
   const hasErr = props.hasError;
   const err = hasErr && (props.props.hideErrorLabel ? true : props.error);
+
   return (
     <Popup
       on='focus'

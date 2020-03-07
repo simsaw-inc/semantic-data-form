@@ -79,4 +79,4 @@ Easy way to render json based forms suing [SemanticUI](https://react.semantic-ui
 
 
 ### Update History
-- 
+- Custom field will not get extra formProps param on render 

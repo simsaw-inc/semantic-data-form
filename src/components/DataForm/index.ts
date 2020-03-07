@@ -1,5 +1,5 @@
 import { DropdownItemProps } from 'semantic-ui-react';
-import { FormikHelpers } from 'formik';
+import {  FormikHelpers, FormikProps } from 'formik';
 
 export { default } from './DataForm'
 
@@ -9,7 +9,7 @@ export interface DataFormProps<V> {
   /** Validation schema for form */
   validationSchema?: any | (() => any);
   /** Collection of field groups */
-  fieldGroups: Array<DataFormFieldGroupProps>;
+  fieldGroups: Array<DataFormFieldGroupProps<V>>;
   /** Form custom class name */
   className?: string;
   /** To show Cancel action button  */
@@ -27,7 +27,10 @@ export interface DataFormProps<V> {
 }
 
 
-export interface DataFormFieldProps {
+export interface DataFormFieldProps<V> {
+  /** Form props */
+  formProps?: FormikProps<V>
+
   /** type of component to render */
   type: DataFormFieldType;
   /** name must be unique to avoid conflicts */
@@ -48,10 +51,10 @@ export interface DataFormFieldProps {
   /** Dropdown options */
   options?: Array<DropdownItemProps>
 
-  render?(data: DataFormFieldRenderProps): any
+  render?(data: DataFormFieldRenderProps<V>, formProps?: FormikProps<V>): any
 }
 
-export interface DataFormFieldRenderProps {
+export interface DataFormFieldRenderProps<V> {
   /** Value of the field */
   value: any;
 
@@ -62,7 +65,7 @@ export interface DataFormFieldRenderProps {
   error?: string;
 
   /** All props that was passed on */
-  props: DataFormFieldProps
+  props: DataFormFieldProps<V>
 
   setValue(value: any): void;
 }
@@ -82,7 +85,8 @@ export enum DataFormFieldType {
 }
 
 
-export interface DataFormFieldGroupProps {
-  fields: DataFormFieldProps | React.ReactElement | Array<DataFormFieldProps | React.ReactElement>
+export interface DataFormFieldGroupProps<V> {
+  formProps?: FormikProps<V>
+  fields: DataFormFieldProps<V> | React.ReactElement | Array<DataFormFieldProps<V> | React.ReactElement>
 }
 

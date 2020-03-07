@@ -48,7 +48,7 @@ export default function DataForm<V>(props: DataFormProps<V>) {
               {
                 props.fieldGroups.map((o, idx) => (
 
-                  <DataFormFieldGroup key={idx}  {...o} />
+                  <DataFormFieldGroup key={idx}  {...o} formProps={fProps}/>
                 ))
               }
               <Button
