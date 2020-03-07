@@ -105,8 +105,9 @@ export default function DataFormField<V>(props: DataFormFieldProps<V>) {
               error: meta.error,
               value: field.value,
               props: props,
+              formProps: props.formProps,
               setValue: helper.setValue
-            }, props.formProps)
+            })
           }
         </Form.Field>
       );

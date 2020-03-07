@@ -28,7 +28,7 @@ export interface DataFormProps<V> {
 
 
 export interface DataFormFieldProps<V> {
-  /** Form props */
+  /** Form props, internally user, don't set it your self */
   formProps?: FormikProps<V>
 
   /** type of component to render */
@@ -66,6 +66,7 @@ export interface DataFormFieldRenderProps<V> {
 
   /** All props that was passed on */
   props: DataFormFieldProps<V>
+  formProps?: FormikProps<V>
 
   setValue(value: any): void;
 }
