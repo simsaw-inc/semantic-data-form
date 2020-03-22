@@ -79,4 +79,5 @@ Easy way to render json based forms suing [SemanticUI](https://react.semantic-ui
 
 
 ### Update History
+- Clear submit form Success/Error message after a interval. Also added a optional cb to get onSubmitError
 - Custom field render param will have extra prop, formProps: FormikProps 

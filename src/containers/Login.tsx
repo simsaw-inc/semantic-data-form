@@ -27,9 +27,12 @@ export default function Login() {
           password: '',
         }}
         onSubmit={async (values: any) => {
-          await sleepFor(1); // simulate save operation
-          throw new Error("Some error message");
+          console.log('posted data', values);
 
+          await sleepFor(1); // simulate save operation
+          // throw new Error("Some error message");
+
+          return 'Done'
         }}
 
         fieldGroups={[

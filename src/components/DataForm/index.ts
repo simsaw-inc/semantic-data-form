@@ -1,5 +1,5 @@
 import { DropdownItemProps } from 'semantic-ui-react';
-import {  FormikHelpers, FormikProps } from 'formik';
+import { FormikHelpers, FormikProps } from 'formik';
 
 export { default } from './DataForm'
 
@@ -19,8 +19,14 @@ export interface DataFormProps<V> {
   /** To set custom text to Cancel action button */
   cancelText?: string
 
-  /** CB for Submit action button click */
-  onSubmit(values: V, formikHelpers: FormikHelpers<V>): void | Promise<any>;
+  /** seconds to show Success/Error message, default is 5 seconds */
+  messageInterval?: number
+
+  /** CB for Submit action button click, onSubmit can return a success message to display */
+  onSubmit(values: V, formikHelpers: FormikHelpers<V>): void | string | Promise<void | string>;
+
+  /** If passed on form will not self render error msg */
+  onSubmitError?(err: any): void;
 
   /** CB for Cancel action button click */
   onCancel?(): void;
@@ -84,7 +90,6 @@ export enum DataFormFieldType {
   UploadMulti = 'uploadMulti',
   Custom = 'custom',
 }
-
 
 export interface DataFormFieldGroupProps<V> {
   formProps?: FormikProps<V>

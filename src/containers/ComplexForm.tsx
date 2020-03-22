@@ -36,12 +36,11 @@ export default function Quote() {
           email: yup.string().email('Wrong email').required('Required'),
           isAgree: yup.boolean().oneOf([true], 'Required'),
         })}
-        onSubmit={async (values, { setSubmitting }) => {
-          console.log('Posted data:');
-          console.log(values);
-
-          await sleepFor(1);
-          setSubmitting(false);
+        onSubmit={async (values, { resetForm }) => {
+          console.log('Posted data:', values);
+          await sleepFor(2);
+          resetForm();
+          return "Saved successfully"
         }}
         onCancel={() => {
           history.push(Path.Home);
@@ -90,8 +89,7 @@ export default function Quote() {
           },
           {
             fields: {
-              label: <span>I agree to you <a href={Path.TermsAndConditions}
-                                             target="_blank">terms and conditions</a></span>,
+              label: <label>I agree to you <a href={Path.TermsAndConditions} rel="noopener noreferrer" target="_blank">terms and conditions</a></label>,
               name: 'isAgree',
               type: DataFormFieldType.CheckBox
             }
